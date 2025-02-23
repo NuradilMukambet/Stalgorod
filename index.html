@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт с 3D-часами</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <header>
+        <ul>
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">Игры</a></li>
+            <li><a class="block_zakaz" href="#">Заказать игру</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Новости</a></li>
+            <a href="#" class="open-registration">Регистрация</a> <!-- Добавлена кнопка регистрации -->
+        </ul>
+    </header>
+    <div id="registration-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeRegistration()">×</span>
+            <h2>Регистрация</h2>
+            <form id="registration-form" onsubmit="submitRegistration(event)">
+                <label for="username">Имя пользователя:</label>
+                <input type="text" id="username" name="username" required>
+    
+                <label for="email">Электронная почта:</label>
+                <input type="email" id="email" name="email" required>
+    
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+    
+                <label for="confirm-password">Подтверждение пароля:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+    
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <section class="clock-section">
+        <div id="countdown-timer">
+            <span class="countdown-digit">1</span>
+            <span class="countdown-digit">2</span>
+            <span class="countdown-digit">:</span>
+            <span class="countdown-digit">3</span>
+            <span class="countdown-digit">4</span>
+        </div>
+        <div class="clock">
+            
+            <div class="circle-text">3D-часы</div>
+        </div>
+        <div class="heroes-circle" id="heroes-circle"></div>
+    </section>
+
+    <div class="background-image"></div>
+
+    <div class="content">
+        <h1>Добро пожаловать в Стальгород</h1>
+        <p>Это постапокалиптический город с богатой атмосферой стимпанка.</p>
+    </div>
+
+    <div id="description" class="description">
+        <span id="description-text"></span>
+        <button onclick="hideDescription()">Закрыть</button>
+    </div>
+
+    <div class="art-blocks">
+        <div class="art-block" data-title="Билд 1" onclick="showDescription('Билд 1')">
+            <img src="img/1.png" alt="Билд 1" />
+        </div>
+        <div class="art-block" data-title="Билд 2" onclick="showDescription('Билд 2')">
+            <img src="img/2.png" alt="Билд 2" />
+        </div>
+        <div class="art-block" data-title="Билд 3" onclick="showDescription('Билд 3')">
+            <img src="img/3.png" alt="Билд 3" />
+        </div>
+        <div class="art-block" data-title="Билд 4" onclick="showDescription('Билд 4')">
+            <img src="img/4.png" alt="Билд 4" />
+        </div>
+        <div class="art-block" data-title="Билд 5" onclick="showDescription('Билд 5')">
+            <img src="img/5.png" alt="Билд 5" />
+        </div>
+        <div class="art-block" data-title="Билд 6" onclick="showDescription('Билд 6')">
+            <img src="img/6.png" alt="Билд 6" />
+        </div>
+    </div>
+    
+    
+    <section class="trailer-section">
+        <h2>Трейлер</h2>
+        <div class="video-description-container">
+            <div class="video-container">
+                <video controls>
+                    <source src="video/0001-0502.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+            </div>
+            <div class="description">
+                <h3>Описание трейлера</h3>
+                <p>Здесь вы можете добавить описание вашего трыфвааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааейлера или другой текст.</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+
+    <div class="container">
+        <div class="requirements-wrapper">
+            <div class="requirement-box">
+                <h4>Минимальные требования:</h4>
+                <ul>
+                    <li>Версия ОС: Windows 10 / Windows 11</li>
+                    <li>Процессор: AMD Ryzen 5 1600X / Intel Core i5-7600K</li>
+                    <li>Оперативная память: 8GB</li>
+                    <li>Видеокарта: AMD Radeon RX 580 8GB / NVIDIA GeForce GTX 1060 6GB</li>
+                    <li>Диск: SSD-накопитель на 150 ГБ</li>
+                </ul>
+            </div>
+        
+            <div class="requirement-box">
+                <h4>Рекомендуемые требования:</h4>
+                <ul>
+                    <li>Версия ОС: Windows 10 / Windows 11</li>
+                    <li>Процессор: AMD Ryzen 7 3700X / Intel Core i7-9700K</li>
+                    <li>Оперативная память: 16GB</li>
+                    <li>Видеокарта: AMD Radeon RX 5700 XT 8GB / NVIDIA GeForce RTX 2070 SUPER 8GB / NVIDIA GeForce GTX 1080 Ti 11GB</li>
+                    <li>Диск: SSD-накопитель на 150 ГБ</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="wrapper">
+            <div class="gameplay-wrapper">
+                <div class="gameplay-box">
+                    <h4>Геймплей:</h4>
+                    <ul>
+                        <li>Одиночная игра</li>
+                        <li>Модулятор (полная поддержка)</li>
+                        <li>Многопользовательский режим (будет добавлен в бесплатном обновлении)</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="localization-wrapper">
+                <div class="localization-box">
+                    <div class="localization-column">
+                        <h5>Озвучка и субтитры:</h5>
+                        <ul>
+                            <li>Английский</li>
+                            <li>Русский</li>
+                        </ul>
+                        <h5>Только субтитры:</h5>
+                    </div>
+                    
+                    <div class="localization-languages">
+                        <div class="localization-column">
+                            <ul>
+                                <li>Немецкий</li>
+                                <li>Французский</li>
+                                <li>Испанский</li>
+                            </ul>
+                        </div>
+                        <div class="localization-column">
+                            <ul>
+                                <li>Итальянский</li>
+                                <li>Польский</li>
+                                <li>Чешский</li>
+                            </ul>
+                        </div>
+                        <div class="localization-column">
+                            <ul>
+                                <li>Турецкий</li>
+                                <li>Сербский</li>
+                                <li>Португальский</li>
+                            </ul>
+                        </div>
+                        <div class="localization-column">
+                            <ul>
+                                <li>Упрощённый китайский</li>
+                                <li>Испанский</li>
+                                <li>Корейский</li>
+                            </ul>
+                        </div>
+                        <div class="localization-column">
+                            <ul>
+                                <li>Японский</li>
+                                <li>Кыргызский</li>
+                                <li>Арабский</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-media">
+            <p>Следите за нами:</p>
+            <a href="#">YouTube</a> | <a href="#">Facebook</a> | <a href="#">Twitter</a>
+        </div>
+    </footer>
+
+    <div id="description-modal" class="modal">
+        <div id="description-content" class="modal-content">
+            <span id="close-btn" onclick="hideDescription()">×</span>
+            <p id="hero-description"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

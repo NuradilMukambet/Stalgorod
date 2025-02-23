@@ -1,0 +1,473 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Основной стиль для всего сайта */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1b1b1b;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Контейнер для фона */
+.background-image {
+    width: 100%; /* Ширина блока с фоном на всю страницу */
+    height: 800px; /* Высота секции, где будет фон */
+    background-image: url('img/wsd.png'); /* Путь к изображению фона */
+    background-size: cover; /* Масштабируем изображение, чтобы оно покрывало блок */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Избегаем повторения изображения */
+    position: absolute; /* Абсолютное позиционирование для размещения вверху */
+    top: 0; /* Расположение вверху страницы */
+    left: 0; /* Расположение слева страницы */
+    z-index: 0; /* Находимся ниже всего остального контента */
+}
+
+.content {
+    padding: 20px;
+    position: relative;
+    z-index: 1; /* Контент поверх фона */
+}
+
+/* Меню */
+header {
+    background-color: #333;
+    position: sticky; /* Прикрепляем к верхней части страницы */
+    top: 0; /* Располагаем его в верхней части */
+    z-index: 1000; /* Устанавливаем высокий z-index, чтобы оно было выше других элементов */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Тень для меню */
+}
+
+header ul {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0; /* Убираем отступы */
+    display: flex;
+    justify-content: center;
+}
+
+header ul li {
+    margin: 0 15px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+header ul li a:hover {
+    background-color: #444;
+    border-radius: 5px;
+    transform: scale(1.05); /* Немного увеличиваем ссылку при наведении */
+}
+/* Стили для модального окна */
+.modal {
+    display: none; /* Изначально скрыто */
+    position: fixed; /* Позиционируем окно поверх всего контента */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Устанавливаем высокий z-index, чтобы оно было на переднем плане */
+}
+
+/* Стили для содержимого модального окна */
+.modal-content {
+    background-color: #4e4336;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+    max-width: 100%;
+    z-index: 10000; /* Обеспечиваем, чтобы содержимое окна было выше фона */
+    position: relative; /* Чтобы z-index сработал */
+}
+
+/* Кнопка для закрытия */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Стили для формы */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin: 10px 0 5px;
+}
+
+form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Часы */
+
+.clock-section {
+    position: relative;
+    margin: 110px auto; /* Центрируем блок */
+    width: 480px;
+    height: 450px; 
+    z-index: 2; /* Часы над фоном */
+}
+
+.clock {
+    width: 95%;
+    height: 100%;
+    background-image: url('img/sd.png'); /* Добавляем изображение часов */
+    background-size: contain; /* Изображение подстраивается под размер блока */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+@keyframes flip {
+    0% {
+        transform: rotateX(0deg);
+    }
+    50% {
+        transform: rotateX(-90deg);
+    }
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+#countdown-timer {
+    position: relative;
+    top: 287px; /* Расстояние от верхнего края экрана */
+    left: 48%;
+    transform: translateX(-50%); /* Центрирует элемент по горизонтали */
+    z-index: 10; /* Устанавливает слой, чтобы элемент был поверх других */
+    /*background-image: url('img/locklTimet.png'); /* Укажи путь к картинке */
+    
+    padding: 0px;
+    font-family: monospace;
+    font-size: 7px;
+    color: #fff; /* Цвет текста */
+    border-radius: 5px;
+}
+.countdown-digit {
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+    font-size: 40px;
+    background: #000;
+    color: #fff;
+    border-radius: 5px;
+    margin: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-digit::before {
+    content: attr(data-next);
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: top 0.5s ease-in-out;
+}
+
+.countdown-digit.animating::before {
+    top: 0;
+}
+
+.countdown-digit.animating {
+    transition: transform 0.5s ease-in-out;
+    transform: translateY(100%);
+}
+/* Удаляем текст внутри круга */
+.circle-text {
+    display: none;
+}
+
+.heroes-circle {
+    position: absolute;
+    width: 200px; /* Диаметр окружности */
+    height: 200px; /* Диаметр окружности */
+    top: 38%; /* Центрируем по вертикали */
+    left: 35%; /* Центрируем по горизонтали */
+    transform: translate(-50%, -50%); /* Сдвигаем на половину размера, чтобы центрировать */
+}
+
+/* Стили для героев */
+.hero {
+    position: absolute;
+    width: 100px; /* Размер круга */
+    height: 100px; /* Размер круга */
+    border-radius: 50%; /* Округлая форма */
+    overflow: hidden; /* Обрезает изображение */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.hero img {
+    width: 100%; /* Изображение займет весь круг */
+    height: auto; /* Поддерживаем пропорции */
+}
+
+.hero:hover {
+    transform: scale(1.5); /* Увеличиваем размер при наведении */
+}
+/* Описание персонажа */
+.description {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(51, 51, 51, 0.9); /* Полупрозрачный фон для лучшей читаемости */
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 10;
+}
+
+/* Контейнер для блоков */
+.art-blocks {
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+    max-width: 1200px; /* Максимальная ширина контейнера */
+}
+
+/* Блоки с острыми углами (параллелограмм) */
+.art-block {
+    background-color: #222;
+    width: 1200px; /* Увеличиваем ширину блоков */
+    height: 700px; /* Увеличиваем высоту блоков */
+    margin: 0 -15px; /* Увеличиваем отступы между блоками */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Более интенсивная тень */
+    overflow: hidden;
+    transform: none;
+    border: 5px solid #333; /* Четкая граница блока */
+    clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%); /* Эффект параллелограмма */
+}
+
+/* Эффекты при наведении */
+.art-block:hover {
+    transform: scale(1.05); /* Увеличение блока при наведении */
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.8); /* Более интенсивная тень */
+    filter: brightness(1.1); /* Увеличение яркости */
+}
+
+/* Изображение */
+.art-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Чтобы картинка не искажалась */
+    border-radius: 0; /* Убираем скругление углов у картинок */
+    transition: transform 0.3s ease;
+}
+
+/* Увеличение изображения при наведении */
+.art-block:hover img {
+    transform: scale(1.1); /* Увеличиваем изображение при наведении */
+}
+
+/* Для описания при наведении */
+.art-block::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 20px; /* Увеличиваем размер текста */
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.art-block:hover::after {
+    opacity: 1;
+}
+
+
+.trailer-section {
+    margin: 20px; /* Отступы вокруг секции */
+}
+
+.video-description-container {
+    display: flex; /* Используем flexbox для расположения */
+    justify-content: space-between; /* Равномерное распределение пространства */
+    align-items: flex-start; /* Выравнивание элементов по верхнему краю */
+}
+
+.video-container {
+    flex: 1; /* Занимает равное пространство */
+    max-width: 50%; /* Максимальная ширина видео */
+}
+
+.video-container video {
+    width: 100%; /* Видео занимает всю ширину контейнера */
+    height: auto; /* Сохраняем пропорции видео */
+}
+
+.description {
+    flex: 1; /* Занимает равное пространство */
+    padding-left: 20px; /* Отступ слева для описания */
+}
+
+
+
+/* Стиль для секции геймплея, озвучки и локализации */
+.requirements-wrapper {
+    display: flex;
+    justify-content: flex-end; /* Выравнивание по правому краю */
+    padding: 20px;
+    width: 100%; /* Убедитесь, что занимает всю ширину родительского элемента */
+}
+
+.localization-wrapper {
+    display: flex;
+    flex-direction: column; /* Вертикальное выравнивание для языков */
+    align-items: flex-start; /* Выравнивание по левому краю */
+    margin: 0; /* Удалите любые внешние отступы */
+    padding: 0; /* Удалите внутренние отступы, если необходимо */
+}
+
+
+/* Блоки требований */
+.requirement-box, .gameplay-box, .localization-box {
+    border: 1px solid #fff;
+    padding: 20px;
+    width: 30%; /* Сделаем блоки уже */
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    margin: 0 10px; /* Добавим отступ между блоками */
+}
+
+/* Заголовки блоков */
+.requirement-box h4, .gameplay-box h4, .localization-box h4 {
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Стили для списков */
+.requirement-box ul, .localization-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Элементы списков */
+.requirement-box ul li, .localization-box ul li {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Контейнер для локализаций */
+.localization-languages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Выровнять колонки по левому краю */
+}
+
+/* Колонки локализаций */
+.localization-column {
+    width: 32%; /* Три колонки с небольшими отступами */
+    margin-bottom: 10px; /* Отступ между колонками */
+}
+
+/* Для улучшения отображения списка */
+.localization-column li {
+    margin-bottom: 5px; /* Отступ между элементами списка */
+}
+
+/* Выравнивание текста по левому краю */
+.localization-column {
+    text-align: left; /* Выравнивание текста по левому краю */
+}
+
+.container {
+    display: flex; /* Используйте flexbox для расположения элементов в одной линии */
+    justify-content: space-between; /* Разделите пространство между элементами */
+    align-items: flex-start; /* Выравнивание по верхнему краю */
+    width: 100%; /* Убедитесь, что занимает всю ширину */
+}
+
+.voice-subtitles, .subtitles-only {
+    width: 90%; /* Увеличиваем ширину колонок */
+}
+
+.voice-subtitles ul, .subtitles-only ul {
+    list-style: none;
+    padding: 0;
+}
+
+.voice-subtitles ul li, .subtitles-only ul li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* Точки для языков */
+.dot {
+    height: 8px;
+    width: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+/* Футер */
+footer {
+    background-color: #333;
+    padding: 10px;
+}
+
+footer .social-media {
+    margin: 10px 0;
+}
+
+footer .social-media a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
