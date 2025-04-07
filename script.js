@@ -14,7 +14,8 @@ const heroes = [
 ];
 
 const heroesCircle = document.getElementById('heroes-circle');
-// Получаем элементы
+
+// Получаем элементы для модального окна
 const registrationModal = document.getElementById('registration-modal');
 const openRegistrationBtn = document.querySelector('.open-registration');
 const closeRegistrationBtn = document.querySelector('.close-btn');
@@ -88,6 +89,8 @@ document.addEventListener('click', (event) => {
         hideDescription();
     }
 });
+
+// Функция для отсчета времени
 function startCountdown(targetDate) {
     function updateCountdown() {
         const now = new Date().getTime();
@@ -115,6 +118,8 @@ function startCountdown(targetDate) {
 // Укажи свою дату (ГОД, МЕСЯЦ (0-11), ДЕНЬ, ЧАСЫ, МИНУТЫ, СЕКУНДЫ)
 const countdownDate = new Date(2025, 5, 26, 12, 0, 0).getTime(); // 1 июня 2025, 12:00
 startCountdown(countdownDate);
+
+// Функция для анимации обновления цифры таймера
 function updateCountdown(digitElement, newValue) {
     if (digitElement.textContent !== newValue) {
         digitElement.setAttribute("data-next", newValue);
@@ -137,3 +142,64 @@ setInterval(() => {
     updateCountdown(digits[3], sec1);
     updateCountdown(digits[4], sec2);
 }, 1000);
+
+// Функция для отправки формы регистрации
+async function submitRegistration(event) {
+    event.preventDefault();
+    
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    // Проверка совпадения паролей
+    if (password !== confirmPassword) {
+        alert('Пароли не совпадают!');
+        return;
+    }
+
+    // Проверка минимальной длины пароля
+    if (password.length < 6) {
+        alert('Пароль должен содержать минимум 6 символов');
+        return;
+    }
+
+    // Проверка email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Пожалуйста, введите корректный email');
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert('Регистрация успешна!');
+            closeRegistration();
+            // Очищаем форму
+            document.getElementById('registration-form').reset();
+        } else {
+            alert(data.error || 'Ошибка при регистрации');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        if (error.message.includes('Failed to fetch')) {
+            alert('Сервер не отвечает. Пожалуйста, проверьте, запущен ли сервер.');
+        } else {
+            alert('Ошибка при отправке данных: ' + error.message);
+        }
+    }
+}
