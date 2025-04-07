@@ -9,51 +9,81 @@
 <body>
     
     <header>
+        <div class="logo">
+            <!-- Логотип игры -->
+            <img src="game_logo.png" alt="Game Logo" class="game-logo">
+            <!-- Основной логотип -->
+            <img src="main_logo.png" alt="Main Logo" class="main-logo">
+        </div>
         <ul>
             <li><a href="#">Главная</a></li>
             <li><a href="#">Игры</a></li>
             <li><a class="block_zakaz" href="#">Заказать игру</a></li>
             <li><a href="#">Контакты</a></li>
             <li><a href="#">Новости</a></li>
-            <a href="#" class="open-registration">Регистрация</a> <!-- Добавлена кнопка регистрации -->
+            <li>
+                <a href="#" class="open-registration">Регистрация</a>
+                <!-- Добавлена кнопка регистрации -->
+            </li>
+            <li>
+                <div class="language-dropdown">
+                    <button class="dropdown-btn">Язык</button>
+                    <div class="dropdown-content">
+                        <a href="#">Русский</a>
+                        <a href="#">English</a>
+                        <a href="#">Français</a>
+                        <!-- Добавьте другие языки по мере необходимости -->
+                    </div>
+                </div>
+            </li>
         </ul>
+        <!-- Социальные сети -->
+        <div class="social-media">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">Twitter</a>
+            <a href="#" class="social-icon">Instagram</a>
+        </div>
     </header>
-    <div id="registration-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeRegistration()">×</span>
-            <h2>Регистрация</h2>
-            <form id="registration-form" onsubmit="submitRegistration(event)">
-                <label for="username">Имя пользователя:</label>
-                <input type="text" id="username" name="username" required>
-    
-                <label for="email">Электронная почта:</label>
-                <input type="email" id="email" name="email" required>
-    
-                <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password" required>
-    
-                <label for="confirm-password">Подтверждение пароля:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
-    
-                <button type="submit">Зарегистрироваться</button>
-            </form>
-        </div>
+   <!-- Модальное окно регистрации -->
+<div id="registration-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeRegistration()">×</span>
+        <h2>Регистрация</h2>
+        <form id="registration-form" onsubmit="submitRegistration(event)">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" name="username" required>
+        
+            <label for="email">Электронная почта:</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+        
+            <label for="confirm-password">Подтверждение пароля:</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+        
+            <button type="submit">Зарегистрироваться</button>
+        </form>
     </div>
+</div>
 
-    <section class="clock-section">
-        <div id="countdown-timer">
-            <span class="countdown-digit">1</span>
-            <span class="countdown-digit">2</span>
-            <span class="countdown-digit">:</span>
-            <span class="countdown-digit">3</span>
-            <span class="countdown-digit">4</span>
-        </div>
-        <div class="clock">
-            
-            <div class="circle-text">3D-часы</div>
-        </div>
-        <div class="heroes-circle" id="heroes-circle"></div>
-    </section>
+<section class="clock-section">
+    <div id="countdown-timer">
+        <span class="countdown-digit">1</span>
+        <span class="countdown-digit">2</span>
+        <span class="countdown-digit">:</span>
+        <span class="countdown-digit">3</span>
+        <span class="countdown-digit">4</span>
+    </div>
+    <div class="clock">
+        <div class="hour-hand"></div>
+        <div class="minute-hand"></div>
+        <div class="second-hand"></div>
+        <div class="circle-text">3D-часы</div>
+    </div>
+    <div class="heroes-circle" id="heroes-circle"></div>
+</section>
+
 
     <div class="background-image"></div>
 
@@ -90,21 +120,31 @@
     
     
     <section class="trailer-section">
-        <h2>Трейлер</h2>
-        <div class="video-description-container">
-            <div class="video-container">
-                <video controls>
-                    <source src="video/0001-0502.mp4" type="video/mp4">
-                    Ваш браузер не поддерживает видео.
-                </video>
-            </div>
-            <div class="description">
-                <h3>Описание трейлера</h3>
-                <p>Здесь вы можете добавить описание вашего трыфвааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааейлера или другой текст.</p>
+        <h2 class="trailer-title">Трейлер</h2>
+        <div class="trailer-container">
+            <video controls>
+                <source src="video/0001-0502.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+            <div class="trailer-text">
+                <h3>Стальгород</h3>
+                <p>Стальгород — шутер от первого лица в сердце разрушенной империи.
+
+                    Окунитесь в эпичную битву под Сталинградом, где каждый шаг может стать последним. "Стальгород" — это шутер от первого лица с элементами выживания и стратегии, где вам предстоит бороться за свою жизнь в условиях мрачного и разрушенного города.
+                    
+                    Станьте главным героем, которому предстоит пройти через суровые испытания, столкнуться с врагами и решить судьбу Стальгорода. В этой игре вы окажетесь в самом центре разрушенной метрополии, полной опустошения, войны и угроз. Ваше главное оружие — это не только огнестрельное оружие, но и умение выживать, адаптироваться и использовать окружающий мир.
+                    
+                    Что вас ждет в "Стальгороде":
+                    
+                    Напряженные сражения в разрушенном городе, где каждый угол может скрывать опасность.
+                    Исследование враждебной территории, где руины и выжженные земли становятся частью вашего пути.
+                    Интуитивно понятная система выживания, где каждое решение влияет на ваше будущее.
+                    Мрачная и атмосферная история, наполненная опасностями и неожиданными поворотами.
+                    Уникальная графика, воссоздающая реалистичные разрушенные пейзажи и динамичную атмосферу Сталгорода.
+                    Готовы ли вы выжить в условиях, где война и выживание переплетаются, а каждый день — это борьба за жизнь? Стальгород ждет своего героя.</p>
             </div>
         </div>
     </section>
-    
     
     
     
@@ -197,6 +237,20 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="support-section">
+        <h3>Нас поддерживают</h3>
+        <div class="support-logos">
+            <a href="https://fasie.ru" target="_blank">
+                <img src="FASIE.SVG" alt="ФАСИ" class="support-logo">
+                <p>Федеральное агентство стратегических инициатив</p>
+            </a>
+        </div>
+        <div class="fasi-widget">
+            <h4>Новости ФАСИ</h4>
+            <iframe src="https://fasie.ru/news/" width="100%" height="400" frameborder="0" scrolling="auto"></iframe>
         </div>
     </div>
 
